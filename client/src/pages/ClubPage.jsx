@@ -15,7 +15,7 @@ export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="bg-white my-auto mt-8 mt-36 py-4 px-8 flex flex-col min-h-screen max-w-4xl mx-auto">
+    <div className="bg-white my-auto py-48 px-8 flex flex-col min-h-screen max-w-4xl mx-auto">
       <div className="px-6 lg:px-8">
         <div className="mx-auto py-0 max-w-2xl">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
