@@ -37,10 +37,10 @@ export default function HomePage(){
               <p className="text-xl text-gray-600 mb-8" data-aos="zoom-y-out" data-aos-delay="150">Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.</p>
               <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center" data-aos="zoom-y-out" data-aos-delay="300">
                 <div>
-                  <a className="btn py-3 px-4 rounded-lg text-white bg-blue-600 hover:bg-blue-700 w-full mb-4 sm:w-auto sm:mb-0" href="#0">Start free trial</a>
+                  <a className="btn py-3 px-4 rounded-lg text-white bg-blue-600 hover:bg-blue-700 w-full mb-4" href="#0">Contratar serviço</a>
                 </div>
-                <div>
-                  <a className="btn py-3 px-4 rounded-lg text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4" href="#0">Learn more</a>
+                <div className="lg:mt-0 mt-8">
+                  <a className="btn py-3 px-4 rounded-lg text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4" href="#0">Falar com consultor</a>
                 </div>
               </div>
             </div>
