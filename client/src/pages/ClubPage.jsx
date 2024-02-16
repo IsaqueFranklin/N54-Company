@@ -15,40 +15,33 @@ export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="bg-white my-auto py-48 px-8 flex flex-col min-h-screen max-w-4xl mx-auto">
-      <div className="px-6 lg:px-8">
-        <div className="mx-auto py-0 max-w-2xl">
-          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-[#0047AB]">
-              Entenda todos os benefícios de se afiliar ao N54 Club (artigo).{' '}
-              <a href="#" className="font-semibold text-[#0047AB]">
-                <span className="absolute inset-0" aria-hidden="true" />
-                Ler mais <span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
-          </div>
-          <div className="text-center">
-            <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-gray-900">
-              O clube do empreendedor digital.
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Tenha acesso à artigos exclusivos, newsletters somente para membros, cursos de marketing e empreendedorismo digital, reuniões e comunidade, além de muito mais.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="/register"
-                className="rounded-md bg-[#0047AB] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Fazer parte agora
-              </a>
-              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                Saber mais <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
+    <div className="bg-white my-auto px-8 flex flex-col min-h-screen mx-auto">
+      <div className="max-w-6xl mx-auto px-4 pt-16 lg:36 sm:px-6">
+
+{/* Hero content */}
+<div className="pt-32 pb-12 md:pt-40 md:pb-20">
+
+  {/* Section header */}
+  <div className="text-center pb-12 md:pb-16">
+    <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4" data-aos="zoom-y-out">Marketing, comunidade e <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">conhecimento.</span></h1>
+    <div className="max-w-3xl mx-auto">
+      <p className="text-xl text-gray-600 mb-8" data-aos="zoom-y-out" data-aos-delay="150">Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.</p>
+      <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center" data-aos="zoom-y-out" data-aos-delay="300">
+        <div>
+          <a className="btn py-3 px-4 rounded-lg text-white bg-blue-600 hover:bg-blue-700 w-full mb-4" href="#0">Fazer parte da N54 Club</a>
+        </div>
+        <div className="lg:mt-0 mt-8">
+          <a className="btn py-3 px-4 rounded-lg text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4" href="#0">Falar com consultor</a>
         </div>
       </div>
-      <div className='mt-24 py-16 mx-auto'>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+      <div className='mt-24 pb-16 mx-auto max-w-6xl'>
           <h2 className='text-xl text-center lg:text-2xl font-bold tracking-tight text-gray-900 mb-8'>Por que criar uma audiência por meio de artigos</h2>
           <div className='lg:grid lg:grid-cols-2 border border-[#0047AB] rounded-2xl p-8 mt-4 text-left gap-8'>
             <div>
