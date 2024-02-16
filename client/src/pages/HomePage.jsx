@@ -1,3 +1,4 @@
+import { useContext, useState } from "react";
 import Header from "../components.jsx/Header"
 import Hero2 from "../components.jsx/LandingPage/Hero2"
 import Hero3 from "../components.jsx/LandingPage/Hero3"
@@ -7,6 +8,7 @@ import Team from "../components.jsx/LandingPage/Team"
 import Testimonials from "../components.jsx/LandingPage/Testimonials"
 
 export default function HomePage(){
+
     return (
       <>
       <section className="relative">

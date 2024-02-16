@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const User = require('./models/User');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
@@ -12,7 +13,7 @@ const app = express();
 //Bcrypt salt and JWT secret
 
 const salt = bcrypt.genSaltSync(10);
-const jwtSecret = 'minhavelhanskjndflajsdfnalkjnflksjdfnlçakjsdfa4s55s5s5!@#';
+const jwtSecret = 'minhavelhacomproumeujantarsopauvanozespãorussonocalção';
 
 //Middlewares setup
 
@@ -22,6 +23,26 @@ app.use(cors({
     credentials: true,
     origin: 'http://localhost:5173'
 }));
+
+//MongoDb connection
+
+mongoose.connect(process.env.MONGO_URL).then((response) => {
+    console.log('Banco de dados conectado.')
+}).catch(err => {
+    console.log('Erro ao se conectar: ');
+    console.log(err);
+})
+
+//Get user data from token for private routes
+
+function getUserDataFromReq(req) {
+    return new Promise((resolve, reject) => {
+        jwt.verify(req.cookies.token, jwtSecret, {}, async (err, userData) => {
+            if (err) throw err;
+            resolve(userData);
+        });
+    })
+}
 
 app.post('/confirmar-email', (req, res) => {
     const {name, username, email, password, codes} = req.body;
@@ -62,16 +83,67 @@ app.post('/confirmar-email', (req, res) => {
     res.json(codes);
 })
 
-//MongoDb connection
+app.post('/cadastro', async (req, res) => {
+    const {name, username, email, password} = req.body;
+    try {
+        const userDoc = await User.create({
+            name, 
+            username,
+            email,
+            password:bcrypt.hashSync(password, salt),
+        })
 
-mongoose.connect(process.env.MONGO_URL).then((response) => {
-    console.log('Banco de dados conectado.')
-}).catch(err => {
-    console.log('Erro ao se conectar: ');
-    console.log(err);
+        res.json(userDoc);
+    } catch (e) {
+        res.status(422).json(e);
+        console.log(e);
+    }
 })
 
+app.post('/login', async (req, res) => {
+    const {email, password} = req.body;
+    const userDoc = await User.findOne({email});
+    if (userDoc) {
+        const passOk = bcrypt.compareSync(password, userDoc.password);
+        if (passOk) {
+            jwt.sign({
+                email:userDoc.email,
+                id:userDoc._id
+            }, jwtSecret, {}, (err, token) => {
+                if (err) throw err;
+                res.cookie('token', token).json(userDoc);
+            });
+        } else {
+            res.status(422).json('A senha não está correta.')
+        }
+    } else {
+        res.json('Usuário não encontrado.')
+    }
+})
 
+app.get('/profile', (req, res) => {
+    const {token} = req.cookies;
+    try {
+        if (token) {
+            jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+                if (err) throw err;
+                const {name, username, photo, email, _id, following, followers, admin} = await User.findById(userData.id);
+                res.json({name, username, photo, email, _id, following, followers, admin});
+            })
+        } else {
+            res.json(null)
+        }
+    } catch (e) {
+        console.log('Error: ');
+        console.log(e);
+    }
+})
+
+app.post('/logout', (req, res) => {
+    res.cookie('token', '').json(true);
+})
+
+//Start the server
 
 app.listen(4000, () => {
     console.log('Servidor online.')

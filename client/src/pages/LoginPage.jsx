@@ -3,13 +3,11 @@ import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../UserContext';
 
-export default function RegisterPage(){
+export default function LoginPage(){
 
     const {setUser, ready} = useContext(UserContext);
 
-    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const [redirect, setRedirect] = useState(null)
@@ -37,25 +35,17 @@ export default function RegisterPage(){
         } else {
             if(code.toString() === codes.toString()){
                 try {
-                    await axios.post('/cadastro', {
-                        name,
-                        username,
-                        email,
-                        password,
-                    });
-
                     const {data} = await axios.post('/login', {
                         email,
                         password,
                     })
-
+        
                     setUser(data);
-                    setRedirect('/dashboard')
-    
-                    alert('O cadastro foi bem sucedido.')
+                    alert('Login bem-sucedido.')
+                    setRedirect('/dashboard');
                 } catch (e) {
-                    console.log(e);
-                    alert('O cadastro falhou, tente novamente mais tarde.')
+                    alert('O login falhou.')
+                    console.log('Erro: '+e)
                 }
             } else {
                 alert('O código está errado.')
@@ -69,8 +59,6 @@ export default function RegisterPage(){
         try {
             setVerifyEmail(true);
             await axios.post('/confirmar-email', {
-                name,
-                username,
                 email,
                 password,
                 codes
@@ -134,16 +122,8 @@ export default function RegisterPage(){
                         </h1>
                         <form onSubmit={verify_Email} className="space-y-4 md:space-y-6" method="POST">
                             <div>
-                                <label for="email" className="block mb-2 text-sm font-medium text-gray-900 ">Seu nome</label>
-                                <input value={name} onChange={ev => setName(ev.target.value)} type="name" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="" />
-                            </div>
-                            <div>
                                 <label for="email" className="block mb-2 text-sm font-medium text-gray-900 ">Seu email</label>
                                 <input value={email} onChange={ev => setEmail(ev.target.value)} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="" />
-                            </div>
-                            <div>
-                                <label for="email" className="block mb-2 text-sm font-medium text-gray-900 ">Seu nome de usuário</label>
-                                <input value={username} onChange={ev => setUsername(ev.target.value)} type="name" name="username" id="username" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="" />
                             </div>
                             <div>
                                 <label for="password" className="block mb-2 text-sm font-medium text-gray-900 ">Sua senha</label>
