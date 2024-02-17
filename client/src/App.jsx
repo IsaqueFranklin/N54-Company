@@ -22,11 +22,11 @@ function App() {
         <Route path='/' element={ <Layout /> }>
           <Route index element={ <HomePage /> } />
           <Route path='/club' element={ <ClubPage /> } />
-          <Route path='/cadastro' element={ <RegisterPage /> } />
-          <Route path='/login' element={ <LoginPage /> } />
           
+          <Route path='/dashboard' element={ <Dashboard /> } />
         </Route>
-        <Route path='/dashboard' element={ <Dashboard /> } />
+        <Route path='/cadastro' element={ <RegisterPage /> } />
+        <Route path='/login' element={ <LoginPage /> } />
       </Routes>
     </UserContextProvider>
   )
