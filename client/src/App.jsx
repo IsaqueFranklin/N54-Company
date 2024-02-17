@@ -10,6 +10,7 @@ import ClubPage from './pages/ClubPage';
 import RegisterPage from './pages/RegisterPage';
 import Dashboard from './pages/Dashboard';
 import LoginPage from './pages/LoginPage';
+import PublicarPage from './pages/PublicarPage';
 
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.withCredentials = true;
@@ -27,6 +28,7 @@ function App() {
         </Route>
         <Route path='/cadastro' element={ <RegisterPage /> } />
         <Route path='/login' element={ <LoginPage /> } />
+        <Route path='/criar' element={ <PublicarPage /> } />
       </Routes>
     </UserContextProvider>
   )

@@ -4,6 +4,50 @@ import axios from 'axios';
 export default function PhotosUploader({addedPhotos, onChange}){
     const [photoLink, setPhotoLink] = useState('');
 
+    async function addPhotoByLink(ev){
+        ev.preventDefault();
+
+        try {
+            const {data:filename} = await axios.post('/uploadlink', {link: photolink});
+            onChange(prev => {
+                return [...prev, filename];
+            });
+            setPhotoLink('');
+        } catch (err) {
+            console.log('Erro: '+err)
+        }
+    }
+
+    function uploadPhoto(ev){
+        ev.preventDefault();
+
+        const files = ev.target.files;
+        const data = new FormData();
+
+        for (let i = 0; i < files.length; i++){
+            data.append('photos', files[i]);
+        };
+
+        axios.post('/upload', data, {
+            headers: {'Content-Type':'multipart/form-data'}
+        }).then(response => {
+            const {data:filenames} = response;
+            onChange(prev => {
+                return [...prev, ...filesnames]
+            })
+        })
+    }
+
+    function removePhoto(ev, filename) {
+        ev.preventDefault();
+        onChange([...addedPhotos.filter(photo => photo !== filename)])
+    }
+
+    function selectAsMainPhoto(ev, filename){
+        ev.preventDefault();
+        onChange([filename, ...addedPhotos.filter(photo => photo !== filename)])
+    }
+
     return (
         <>
                         <div className='flex gap-2'>
