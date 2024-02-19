@@ -228,6 +228,8 @@ app.post('/criar-newsletter', async (req, res) => {
 
     const {admin} = await User.findById(userData.id);
 
+    const index = await Newsletter.find();
+
     if(admin ===  true){
         Newsletter.create({
             title,
@@ -236,7 +238,7 @@ app.post('/criar-newsletter', async (req, res) => {
             content,
             dia,
             owner:userData.id,
-            index: Newsletter.find().length
+            index:index.length
         }).then(doc => {
             res.json(doc)
         }).catch(err => {
@@ -252,6 +254,8 @@ app.post('/criar-book', async (req, res) => {
 
     const {admin} = await User.findById(userData.id);
 
+    const index = await Newsletter.find();
+
     if(admin === true){
         Book.create({
             title,
@@ -259,6 +263,7 @@ app.post('/criar-book', async (req, res) => {
             photos:addedPhotos,
             dia,
             owner:userData.id,
+            index:index.length
         }).then(doc => {
             res.json(doc)
         }).catch(err => {
