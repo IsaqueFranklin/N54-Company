@@ -82,13 +82,17 @@ export default function PublicarPage(){
         }
     }
 
+    if(ready && !user){
+        return <Navigate to={'/cadastro'} />
+    }
+
     if(redirect){
         return <Navigate to={'/dashboard'} />
     }
 
     if(postType === "newsletter"){
         return (
-            <div className='my-auto mx-auto items-center mt-12 max-w-4xl'>
+            <div className='my-auto mx-auto items-center mt-12 max-w-6xl'>
             <form onSubmit={savePost}>
                 <h2 className='text-2xl mt-4 mb-4'>Título da sua publicação</h2>
                 <input type="text" value={title} onChange={ev => setTitle(ev.target.value)} placeholder='Um título de cair as calças...' />

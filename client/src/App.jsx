@@ -24,8 +24,9 @@ function App() {
           <Route index element={ <HomePage /> } />
           <Route path='/club' element={ <ClubPage /> } />
           
-          <Route path='/dashboard' element={ <Dashboard /> } />
+          
         </Route>
+        <Route path='/dashboard' element={ <Dashboard /> } />
         <Route path='/cadastro' element={ <RegisterPage /> } />
         <Route path='/login' element={ <LoginPage /> } />
         <Route path='/criar' element={ <PublicarPage /> } />

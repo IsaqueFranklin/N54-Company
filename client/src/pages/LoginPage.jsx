@@ -58,7 +58,7 @@ export default function LoginPage(){
 
         try {
             setVerifyEmail(true);
-            await axios.post('/confirmar-email', {
+            await axios.post('/2fa-confirmar-email', {
                 email,
                 password,
                 codes
