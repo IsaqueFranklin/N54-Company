@@ -5,6 +5,12 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User');
+const Newsletter = require('./models/Newsletter');
+const Book = require('./models/Book');
+const Modulo = require('./models/Modulo');
+const Conteudo = require('./models/Conteudo');
+const Carta = require('./models/Carta');
+
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 const imageDownloader = require('image-downloader');
@@ -213,6 +219,50 @@ app.post('/upload', photosMiddleware.array('photos', 10), (req, res) => {
     }
 
     res.json(uploadedFiles);
+})
+
+app.post('/criar-newsletter', async (req, res) => {
+    const userData = await getUserDataFromReq(req);
+
+    const {title, description, addedPhotos, content, dia} = req.body;
+
+    const {admin} = await User.findById(userData.id);
+
+    if(admin ===  true){
+        Newsletter.create({
+            title,
+            description,
+            photos:addedPhotos,
+            content,
+            dia,
+            owner:userData.id,
+            index: Newsletter.find().length
+        }).then(doc => {
+            res.json(doc)
+        }).catch(err => {
+            throw err;
+        })
+    }
+})
+
+app.post('/criar-book', async (req, res) => {
+    const userData =  getUserDataFromReq(req);
+
+    const {title, description, addedPhotos, dia} = req.body;
+
+    if(userData.admin === true){
+        Book.create({
+            title,
+            description,
+            photos:addedPhotos,
+            dia,
+            owner:userData.id,
+        }).then(doc => {
+            res.json(doc)
+        }).catch(err => {
+            throw err;
+        })
+    }
 })
 
 //Start the server
