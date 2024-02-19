@@ -45,7 +45,7 @@ export default function PublicarPage(){
                             <Link><button onClick={() => setNewsletter(true)} type="submit" className="w-full text-white bg-gray-800 hover:bg-black focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Newsletter</button></Link>
                         </div>
                         <div className="">
-                            <Link><button onClick={() => setBooks(true)} type="submit" className="w-full text-white bg-gray-800 hover:bg-black focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Novo Book</button></Link>
+                            <Link><button onClick={() => setBook(true)} type="submit" className="w-full text-white bg-gray-800 hover:bg-black focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Novo Book</button></Link>
                         </div>
                     </div>
                 </div>

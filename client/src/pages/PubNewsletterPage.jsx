@@ -46,13 +46,18 @@ export default function PubNewsletterPage(){
             title, description, addedPhotos, content, dia:new Date(),
         }
 
-        try {
-            await axios.post('/criar-newsletter', {
-                ...newsletterPostData
-            })
-            setRedirect(true);
-        } catch (e){
-            console.log(e)
+        if(user.admin){
+            if(id){
+                await axios.post('/criar-newsletter', {
+                    id, ...newsletterPostData
+                })
+                setRedirect(true);
+            } else {
+                await axios.post('/criar-newsletter', {
+                    ...newsletterPostData
+                })
+                setRedirect(true);
+            }
         }
     }
 

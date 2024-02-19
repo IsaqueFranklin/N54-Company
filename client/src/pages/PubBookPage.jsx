@@ -45,16 +45,18 @@ export default function PubBookPage(){
             moduleTitle, moduleDescription, moduleAddedPhotos, dia:new Date()
         }
 
-        if(id){
-            await axios.post('/criar-book', {
-                id, ...bookPostData
-            })
-            setRedirect(true);
-        } else {
-            await axios.post('/criar-book', {
-                ...bookPostData
-            })
-            setRedirect(true);
+        if(user.admin){
+            if(id){
+                await axios.post('/criar-book', {
+                    id, ...bookPostData
+                })
+                setRedirect(true);
+            } else {
+                await axios.post('/criar-book', {
+                    ...bookPostData
+                })
+                setRedirect(true);
+            }
         }
 
     }

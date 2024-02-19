@@ -246,11 +246,13 @@ app.post('/criar-newsletter', async (req, res) => {
 })
 
 app.post('/criar-book', async (req, res) => {
-    const userData =  getUserDataFromReq(req);
+    const userData =  await getUserDataFromReq(req);
 
     const {title, description, addedPhotos, dia} = req.body;
 
-    if(userData.admin === true){
+    const {admin} = await User.findById(userData.id);
+
+    if(admin === true){
         Book.create({
             title,
             description,
