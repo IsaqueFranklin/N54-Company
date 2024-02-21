@@ -26,6 +26,9 @@ export default function Book({books}){
         }
 
         setCreateModule(false);
+        setModuleTitle('');
+        setModuleDescription('');
+        setModuleAddedPhotos([]);
 
         if(user.admin){
             if(id){
@@ -39,6 +42,9 @@ export default function Book({books}){
                 })
             }
         }
+    }
+
+    function backNormal(){
 
         setModuleTitle('');
         setModuleDescription('');
