@@ -250,17 +250,17 @@ app.post('/criar-newsletter', async (req, res) => {
 app.post('/criar-book', async (req, res) => {
     const userData =  await getUserDataFromReq(req);
 
-    const {title, description, addedPhotos, dia} = req.body;
+    const {bookTitle, bookDescription, bookAddedPhotos, dia} = req.body;
 
     const {admin} = await User.findById(userData.id);
 
-    const index = await Newsletter.find();
+    const index = await Book.find();
 
     if(admin === true){
         Book.create({
-            title,
-            description,
-            photos:addedPhotos,
+            title:bookTitle,
+            description:bookDescription,
+            photos:bookAddedPhotos,
             dia,
             owner:userData.id,
             index:index.length
@@ -268,6 +268,32 @@ app.post('/criar-book', async (req, res) => {
             res.json(doc)
         }).catch(err => {
             throw err;
+        })
+    }
+})
+
+app.get('/get-books', async (req, res) => {
+    res.json(await Book.find().sort({dia: -1}).populate('owner', ['username', 'dia']).sort({createdAt: -1}));
+})
+
+app.post('/criar-modulo', async (req, res) => {
+    const userData = await getUserDataFromReq(req);
+
+    const {moduleTitle, moduleDescription, moduleAddedPhotos, dia, bookId} = req.body;
+
+    const {admin} = await User.findById(userData.id);
+
+    const index = await Modulo.find({conjunto: bookId});
+
+    if(admin === true){
+        Modulo.create({
+            title:moduleTitle,
+            description:moduleDescription,
+            photos:moduleAddedPhotos,
+            dia,
+            owner:userData.id,
+            index:index.length,
+            conjunto: bookId
         })
     }
 })

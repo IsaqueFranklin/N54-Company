@@ -33,16 +33,16 @@ export default function PubBookPage(){
 
     const [redirect, setRedirect] = useState(false);
 
-    //States for modules
-    const [moduleTitle, setModuleTitle] = useState('');
-    const [moduleDescription, setModuleDescription] = useState('');
-    const [moduleAddedPhotos, setModuleAddedPhotos] = useState([]);
+    //States for books
+    const [bookTitle, setBookTitle] = useState('');
+    const [bookDescription, setBookDescription] = useState('');
+    const [bookAddedPhotos, setBookAddedPhotos] = useState([]);
 
     async function saveBook(ev){
         ev.preventDefault();
 
         const bookPostData = {
-            moduleTitle, moduleDescription, moduleAddedPhotos, dia:new Date()
+            bookTitle, bookDescription, bookAddedPhotos, dia:new Date()
         }
 
         if(user.admin){
@@ -66,20 +66,20 @@ export default function PubBookPage(){
     }
 
     if(redirect){
-        return <Navigate to={'/'} />
+        return <Navigate to={'/criar'} />
     }
 
     return (
         <div className='my-auto mx-auto items-center mt-12 max-w-4xl'>
         <form onSubmit={saveBook}>
             <h2 className='text-2xl mt-4 mb-4'>Título do seu book</h2>
-            <input type="text" value={moduleTitle} onChange={ev => setModuleTitle(ev.target.value)} placeholder='Um título de cair as calças...' />
+            <input type="text" value={bookTitle} onChange={ev => setBookTitle(ev.target.value)} placeholder='Um título de cair as calças...' />
 
             <h2 className='text-2xl mt-12 mb-4'>Descrição do seu book</h2>
-            <input type="text" value={moduleDescription} onChange={ev => setModuleDescription(ev.target.value)} placeholder='Um descrição de abrir a boca...' /> 
+            <input type="text" value={bookDescription} onChange={ev => setBookDescription(ev.target.value)} placeholder='Um descrição de abrir a boca...' /> 
 
                     <h2 className='text-2xl mt-12 mb-4'>Foto de capa do seu book</h2>
-                    <PhotosUploader addedPhotos={moduleAddedPhotos} onChange={setModuleAddedPhotos} />
+                    <PhotosUploader addedPhotos={bookAddedPhotos} onChange={setBookAddedPhotos} />
 
                     <div className='mb-10 mt-12'>
                         <button className='py-2 px-4 w-full rounded rounded-lg bg-[#0047AB] text-white hover:bg-white hover:text-black my-4 mb-20'>Publicar</button>

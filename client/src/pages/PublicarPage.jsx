@@ -4,6 +4,7 @@ import { Navigate, useParams, Link } from 'react-router-dom';
 import PubNewsletterPage from './PubNewsletterPage';
 import PubBookPage from './PubBookPage';
 import { UserContext } from '../UserContext';
+import Book from '../components.jsx/Book';
 
 
 export default function PublicarPage(){
@@ -16,6 +17,14 @@ export default function PublicarPage(){
 
 
     const [books, setBooks] = useState([]);
+
+    const [seeBooks, setSeeBooks] = useState(false);
+
+    useEffect(() => {
+        axios.get('/get-books').then(response => {
+            setBooks([...response.data])
+        })
+    }, [])
 
     if(ready && !user){
         return <Navigate to={'/cadastro'} />
@@ -49,6 +58,15 @@ export default function PublicarPage(){
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className='mt-16 max-w-4xl mx-auto my-auto'>
+                
+
+            {seeBooks ? (
+                <Book books={books} />
+                
+            ) : (<button onClick={() => setSeeBooks(true)} type="submit" className="w-full text-white bg-gray-800 hover:bg-black focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Ver meus livros</button>)}
             </div>
         </section>
     )

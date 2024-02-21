@@ -70,7 +70,7 @@ export default function PubNewsletterPage(){
     }
 
     return (
-        <div className='my-auto mx-auto items-center mt-12 max-w-6xl'>
+        <div className='my-auto mx-auto items-center mt-12 max-w-4xl'>
         <form onSubmit={saveNewsletter}>
             <h2 className='text-2xl mt-4 mb-4'>Título da sua publicação</h2>
             <input type="text" value={title} onChange={ev => setTitle(ev.target.value)} placeholder='Um título de cair as calças...' />
