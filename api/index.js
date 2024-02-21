@@ -298,6 +298,10 @@ app.post('/criar-modulo', async (req, res) => {
     }
 })
 
+app.get('/get-modulos', async (req, res) => {
+    res.json(await Modulo.find().sort({dia: -1}).populate('owner', ['username', 'dia']).sort({createdAt: -1}));
+})
+
 //Start the server
 
 app.listen(4000, () => {
