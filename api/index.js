@@ -302,8 +302,41 @@ app.get('/get-modulos', async (req, res) => {
     res.json(await Modulo.find().sort({dia: -1}).populate('owner', ['username', 'dia']).sort({createdAt: -1}));
 })
 
+app.post('/criar-conteudo', async (req, res) => {
+    const userData = await getUserDataFromReq(req);
+
+    const {contentTitle, contentDescription, contentAddedPhotos, dia, moduleId} = req.body;
+
+    const {admin} = await User.findById(userData.id);
+
+    const index = await Conteudo.find({conjunto: moduleId});
+
+    console.log(moduleId)
+    try {
+        if(admin === true){
+            Conteudo.create({
+                title:contentTitle,
+                description:contentDescription,
+                photos:contentAddedPhotos,
+                dia,
+                owner:userData.id,
+                index:index.length,
+                conjunto: moduleId
+            })
+        }
+    
+        res.json(index)
+    } catch(err){
+        console.log(err)
+    }
+})
+
+app.get('/get-contents', async (req, res) => {
+    res.json(await Conteudo.find().sort({dia: -1}).populate('owner', ['username', 'dia']).sort({createdAt: -1}));
+})
+
 //Start the server
 
-app.listen(4000, () => {
+app.listen(5000, () => {
     console.log('Servidor online.')
 })

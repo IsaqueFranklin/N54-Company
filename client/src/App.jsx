@@ -11,8 +11,9 @@ import RegisterPage from './pages/RegisterPage';
 import Dashboard from './pages/Dashboard';
 import LoginPage from './pages/LoginPage';
 import PublicarPage from './pages/PublicarPage';
+import ContentCreateDock from './components.jsx/ContentCreateDock';
 
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.withCredentials = true;
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/cadastro' element={ <RegisterPage /> } />
         <Route path='/login' element={ <LoginPage /> } />
         <Route path='/criar' element={ <PublicarPage /> } />
+        <Route path='/criar-conteudo/:id' element={ <ContentCreateDock /> } />
       </Routes>
     </UserContextProvider>
   )
