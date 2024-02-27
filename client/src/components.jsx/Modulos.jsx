@@ -39,7 +39,7 @@ export default function Modulos({ modulos }) {
                                     <img className='rounded-2xl w-32 h-32 aspect-square' src={'http://localhost:5000/uploads/' + module.photos?.[0]} />
                                 </div>
                                 <div className='my-auto mx-8'>
-                                    <h2 className='font-bold text-black'>{module.title}</h2>
+                                    <h2 className='font-light text-xl text-black'>{module.title}</h2>
                                     <h3 className='text-sm text-gray-900'>{module.description}</h3>
                                     {/*<div className='content' dangerouslySetInnerHTML={{__html:post.content}} /> */}
                                     <button onClick={() => { setCreateContent(true), setModuleId(module._id) }} className='py-2 px-2 rounded-full bg-[#0047AB] text-white hover:bg-gray-700 hover:text-black my-4 mb-6'>

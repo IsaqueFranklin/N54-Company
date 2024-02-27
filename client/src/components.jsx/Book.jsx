@@ -88,7 +88,7 @@ export default function Book({books}){
                                     <img className='rounded-2xl aspect-square w-24 h-24' src={'http://localhost:5000/uploads/'+book.photos?.[0]} />
                                 </div>
                                 <div className='my-auto mx-8'>
-                                    <h2 className='font-semibold text-gray-800 text-3xl'>{book.title}</h2>
+                                    <h2 className='font-light text-gray-800 text-3xl'>{book.title}</h2>
                                     <h3 className='text-sm text-gray-900'>{book.description}</h3> 
                                     {/*<div className='content' dangerouslySetInnerHTML={{__html:post.content}} /> */}  
                                 </div>
