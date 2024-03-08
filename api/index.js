@@ -305,13 +305,13 @@ app.get('/get-modulos', async (req, res) => {
 app.post('/criar-conteudo', async (req, res) => {
     const userData = await getUserDataFromReq(req);
 
-    const {contentTitle, contentDescription, contentAddedPhotos, contentContent, dia, moduleId} = req.body;
+    const {contentTitle, contentDescription, contentAddedPhotos, contentContent, dia, id} = req.body;
 
     const {admin} = await User.findById(userData.id);
 
-    const index = await Conteudo.find({conjunto: moduleId});
+    const index = await Conteudo.find({conjunto: id});
 
-    console.log(moduleId)
+    console.log(id)
     try {
         if(admin === true){
             Conteudo.create({
@@ -322,11 +322,40 @@ app.post('/criar-conteudo', async (req, res) => {
                 dia,
                 owner:userData.id,
                 index:index.length,
-                conjunto: moduleId
+                conjunto: id
             })
         }
     
         res.json(index)
+    } catch(err){
+        console.log(err)
+    }
+})
+
+app.put('/criar-conteudo', async (req, res) => {
+    const userData = await getUserDataFromReq(req);
+
+    const {contentTitle, contentDescription, contentAddedPhotos, contentContent, dia, id, eid} = req.body;
+
+    const {admin} = await User.findById(userData.id);
+
+
+    try {
+        if(admin === true){
+            const postDoc = await Conteudo.findById(eid);
+            if(userData.id === postDoc.owner.id){
+                postDoc.set({
+                    title:contentTitle,
+                    description:contentDescription,
+                    content: contentContent,
+                    photos:contentAddedPhotos,
+                })
+
+                await postDoc.save();
+                res.json(postDoc);
+            }
+        }
+    
     } catch(err){
         console.log(err)
     }

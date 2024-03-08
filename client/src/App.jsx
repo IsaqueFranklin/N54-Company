@@ -32,6 +32,7 @@ function App() {
         <Route path='/login' element={ <LoginPage /> } />
         <Route path='/criar' element={ <PublicarPage /> } />
         <Route path='/criar-conteudo/:id' element={ <ContentCreateDock /> } />
+        <Route path='/criar-conteudo/:eid' element={ <ContentCreateDock /> } />
       </Routes>
     </UserContextProvider>
   )

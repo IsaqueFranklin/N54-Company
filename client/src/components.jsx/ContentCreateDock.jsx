@@ -29,7 +29,7 @@ const formats = [
 export default function ContentCreateDock({xa}){
 
     const {ready, user, setUser} = useContext(UserContext);
-    const {id} = useParams();
+    const {id, eid} = useParams();
 
     //States for modules
     const [contentTitle, setContentTitle] = useState('');
@@ -44,13 +44,21 @@ export default function ContentCreateDock({xa}){
         ev.preventDefault();
 
         const contentPostData = {
-            contentTitle, contentDescription, contentAddedPhotos, dia:new Date(), moduleId
+            contentTitle, contentDescription, contentAddedPhotos, contentContent, dia:new Date(), id
         }
         
         if(user.admin){
-            await axios.post('/criar-conteudo', {
-                ...contentPostData
-            })
+            if(id){
+                await axios.post('/criar-conteudo/', {
+                    ...contentPostData
+                })
+            }
+
+            if(eid){
+                await axios.put('/criar-conteudo/', {
+                    eid, ...contentPostData
+                })
+            }
         }
 
         setRedirect(true)

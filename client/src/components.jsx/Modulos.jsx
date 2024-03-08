@@ -115,10 +115,10 @@ export default function Modulos({ modulos }) {
             {modulos?.length > 0 && modulos?.map((module, index) => {
                 return (
                     <Link key={index} className=''>
-                        <div className="border border-gray-800 rounded-2xl py-1 lg:py-8 px-2 lg:px-6 mb-2">
+                        <div className="border border-gray-800 rounded-2xl py-1 lg:py-4 px-2 lg:px-4 mb-2">
                             <div className='flex'>
-                                <div className='bg-gray-500 mb-2 lg:w-32 lg:h-32 min-w-16 max-w-16 h-16 aspect-square rounded-2xl'>
-                                    <img className='rounded-2xl lg:w-32 lg:h-32 min-w-16 max-w-16 h-16 aspect-square' src={'http://localhost:5000/uploads/' + module.photos?.[0]} />
+                                <div className='bg-gray-500 mb-2 lg:w-24 lg:h-24 min-w-16 h-16 aspect-square rounded-2xl'>
+                                    <img className='rounded-2xl lg:w-24 lg:h-24 min-w-16 h-16 aspect-square' src={'http://localhost:5000/uploads/' + module.photos?.[0]} />
                                 </div>
                                 <div className='my-auto mx-8'>
                                     <h2 className='font-light text-sm lg:text-xl text-black'>{module.title}</h2>
