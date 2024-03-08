@@ -3,6 +3,28 @@ import {Link, Navigate, useParams} from 'react-router-dom';
 import axios from 'axios';
 import PhotosUploader from './PhotosUploader';
 import { UserContext } from '../UserContext';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
+//import { CKEditor } from '@ckeditor/ckeditor5-react';
+//import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+const modules = {
+    toolbar: [
+      [{ 'header': [1, 2, false] }],
+      ['bold', 'italic', 'underline','strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['link', 'image'],
+      ['clean']
+    ],
+};
+
+const formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image'
+];
 
 export default function ContentCreateDock({xa}){
 
@@ -13,6 +35,7 @@ export default function ContentCreateDock({xa}){
     const [contentTitle, setContentTitle] = useState('');
     const [contentDescription, setContentDescription] = useState('');
     const [contentAddedPhotos, setContentAddedPhotos] = useState([]);
+    const [contentContent, setContentContent] = useState('');
 
     const [redirect, setRedirect] = useState(false);
 
@@ -48,6 +71,15 @@ export default function ContentCreateDock({xa}){
 
                 <h2 className='text-2xl mt-12 mb-4'>Foto de capa do seu módulo</h2>
                 <PhotosUploader addedPhotos={contentAddedPhotos} onChange={setContentAddedPhotos} />
+
+                <h2 className='text-2xl mt-12 mb-4'>Escreva aqui</h2>
+                    <ReactQuill
+                        value={contentContent} 
+                        theme={'snow'}
+                        onChange={setContentContent} 
+                        modules={modules} 
+                        formats={formats} 
+                    />
 
                 <div className='mb-10 mt-12'>
                     <button className='py-2 px-4 w-full rounded rounded-lg bg-[#0047AB] text-white hover:bg-white hover:text-black my-4 mb-20'>Publicar</button>

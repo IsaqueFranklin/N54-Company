@@ -43,7 +43,7 @@ export default function PublicarPage(){
     }
 
     return (
-        <section className="bg-white my-48 lg:mt-0">
+        <section className="bg-white my-auto items-center py-16 lg:py-2 lg:pt-32 px-4 lg:px-0">
             
             <div className='my-16 max-w-4xl mx-auto my-auto'>
                     <h1 className="text-xl font-light leading-tight tracking-tight text-gray-900 lg:text-3xl mb-4">

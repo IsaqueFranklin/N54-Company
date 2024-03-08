@@ -305,7 +305,7 @@ app.get('/get-modulos', async (req, res) => {
 app.post('/criar-conteudo', async (req, res) => {
     const userData = await getUserDataFromReq(req);
 
-    const {contentTitle, contentDescription, contentAddedPhotos, dia, moduleId} = req.body;
+    const {contentTitle, contentDescription, contentAddedPhotos, contentContent, dia, moduleId} = req.body;
 
     const {admin} = await User.findById(userData.id);
 
@@ -317,6 +317,7 @@ app.post('/criar-conteudo', async (req, res) => {
             Conteudo.create({
                 title:contentTitle,
                 description:contentDescription,
+                content: contentContent,
                 photos:contentAddedPhotos,
                 dia,
                 owner:userData.id,
