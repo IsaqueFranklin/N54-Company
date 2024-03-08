@@ -26,10 +26,10 @@ const formats = [
     'link', 'image'
 ];
 
-export default function ContentCreateDock({xa}){
+export default function ContentCreateDock(){
 
     const {ready, user, setUser} = useContext(UserContext);
-    const {id, eid} = useParams();
+    const {id} = useParams();
 
     //States for modules
     const [contentTitle, setContentTitle] = useState('');
@@ -38,14 +38,28 @@ export default function ContentCreateDock({xa}){
     const [contentContent, setContentContent] = useState('');
 
     const [redirect, setRedirect] = useState(false);
+    const [check, setCheck] = useState(false);
 
-    const moduleId = xa;
+    useEffect(() => {
+        if(id){
+            axios.get('/content/'+id).then(response => {
+                const {data} = response;
+                setContentTitle(data.title);
+                setContentDescription(data.description);
+                setContentAddedPhotos(data.photos);
+                setContentContent(data.content);
+                setCheck(true);
+            })
+        }
+    }, [])
     async function saveContent(ev){
         ev.preventDefault();
 
         const contentPostData = {
             contentTitle, contentDescription, contentAddedPhotos, contentContent, dia:new Date(), id
         }
+
+        console.log(check)
         
         if(user.admin){
             if(id){
@@ -54,9 +68,9 @@ export default function ContentCreateDock({xa}){
                 })
             }
 
-            if(eid){
+            if(id && check){
                 await axios.put('/criar-conteudo/', {
-                    eid, ...contentPostData
+                    ...contentPostData
                 })
             }
         }

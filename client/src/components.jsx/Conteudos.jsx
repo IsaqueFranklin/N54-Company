@@ -22,7 +22,7 @@ export default function Conteudos({ conteudos }) {
         <div className='mt-8'>
             {conteudos?.length > 0 && conteudos?.map((module, index) => {
                 return (
-                    <Link key={index} className=''>
+                    <Link key={index} to={"/criar-conteudo/"+module._id} className=''>
                         <div className="border border-gray-800 rounded-2xl py-1 lg:py-4 px-2 lg:px-4 mb-2">
                             <div className='flex'>
                                 <div className='bg-gray-500 mb-2 lg:w-32 lg:h-32 min-w-16 h-16 aspect-square rounded-2xl'>

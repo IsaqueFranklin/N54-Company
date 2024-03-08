@@ -335,15 +335,15 @@ app.post('/criar-conteudo', async (req, res) => {
 app.put('/criar-conteudo', async (req, res) => {
     const userData = await getUserDataFromReq(req);
 
-    const {contentTitle, contentDescription, contentAddedPhotos, contentContent, dia, id, eid} = req.body;
+    const {contentTitle, contentDescription, contentAddedPhotos, contentContent, dia, id} = req.body;
 
     const {admin} = await User.findById(userData.id);
 
 
     try {
         if(admin === true){
-            const postDoc = await Conteudo.findById(eid);
-            if(userData.id === postDoc.owner.id){
+            const postDoc = await Conteudo.findById(id);
+            if(userData.id === postDoc.owner.toString()){
                 postDoc.set({
                     title:contentTitle,
                     description:contentDescription,
@@ -363,6 +363,11 @@ app.put('/criar-conteudo', async (req, res) => {
 
 app.get('/get-contents', async (req, res) => {
     res.json(await Conteudo.find().sort({dia: -1}).populate('owner', ['username', 'dia']).sort({createdAt: -1}));
+})
+
+app.get('/content/:id', async (req, res) => {
+    const {id} = req.params;
+    res.json(await Conteudo.findById(id));
 })
 
 //Start the server
