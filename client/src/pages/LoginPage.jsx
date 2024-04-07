@@ -44,6 +44,9 @@ export default function LoginPage(){
                     alert('Login bem-sucedido.')
                     setRedirect('/dashboard');
                 } catch (e) {
+                    if(e.response.status == 422){
+                        alert("A senha está incorreta.")
+                    }
                     alert('O login falhou.')
                     console.log('Erro: '+e)
                 }
