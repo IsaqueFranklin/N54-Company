@@ -67,8 +67,8 @@ export default function HomePage(){
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-            <h2 className="h2 text-xl mb-4">Nossos serviços e soluções</h2>
-            <p className="text-xl text-gray-600">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat.</p>
+            <h2 className="h2 text-2xl mb-4">Nossos serviços e soluções</h2>
+            <p className="text-lg text-gray-600">Transforme sua presença online com a nossa expertise em marketing digital. Do design de websites ao gerenciamento de campanhas no Google Ads, estamos aqui para impulsionar o seu tráfego e maximizar o seu sucesso na web.</p>
           </div>
 
           {/* Items */}
@@ -87,7 +87,7 @@ export default function HomePage(){
                   </g>
                 </g>
               </svg>
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Headless CMS</h4>
+              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Estratégia digital</h4>
               <p className="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
 
@@ -103,7 +103,7 @@ export default function HomePage(){
                   </g>
                 </g>
               </svg>
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Headless CMS</h4>
+              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Marketing de resultados</h4>
               <p className="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
 
@@ -120,7 +120,7 @@ export default function HomePage(){
                   </g>
                 </g>
               </svg>
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Headless CMS</h4>
+              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Plataformas de negócios</h4>
               <p className="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
 
@@ -137,7 +137,7 @@ export default function HomePage(){
                   </g>
                 </g>
               </svg>
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Headless CMS</h4>
+              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Tráfego pago</h4>
               <p className="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
 
@@ -153,7 +153,7 @@ export default function HomePage(){
                   </g>
                 </g>
               </svg>
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Headless CMS</h4>
+              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Desenvolvimento web</h4>
               <p className="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
 
@@ -168,7 +168,7 @@ export default function HomePage(){
                   </g>
                 </g>
               </svg>
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Headless CMS</h4>
+              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Consultoria estratégica</h4>
               <p className="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
 
