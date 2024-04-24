@@ -194,7 +194,7 @@ export default function HomePage(){
         </div>
     </div>
 </section>
-    <Team />
+    {/*<Team />*/}
     <Marketing />
     <Newsletter />
     </>
