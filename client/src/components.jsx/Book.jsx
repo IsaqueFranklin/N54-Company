@@ -82,7 +82,7 @@ export default function Book({books}){
             {books?.length > 0 && books?.map((book, index) => {
                 return (
                     <Link key={index} className=''>
-                        <div className="border border-gray-800 rounded-2xl py-1 lg:py-4 px-2 lg:px-6 mb-2">
+                        <div className="py-1 lg:py-4 mb-2">
                             <div className='flex lg:mb-2'>
                                 <div className='bg-gray-500 mb-2 rounded-2xl'>
                                     <img className='rounded-2xl aspect-square min-w-24 max-w-24 h-24' src={'http://localhost:5000/uploads/'+book.photos?.[0]} />

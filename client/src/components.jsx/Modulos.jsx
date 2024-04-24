@@ -115,7 +115,7 @@ export default function Modulos({ modulos }) {
             {modulos?.length > 0 && modulos?.map((module, index) => {
                 return (
                     <Link key={index} className=''>
-                        <div className="border border-gray-800 rounded-2xl py-1 lg:py-4 px-2 lg:px-4 mb-2">
+                        <div className="py-1 lg:py-4 px-2 lg:px-4 mb-2">
                             <div className='flex'>
                                 <div className='bg-gray-500 mb-2 lg:w-24 lg:h-24 min-w-16 h-16 aspect-square rounded-2xl'>
                                     <img className='rounded-2xl lg:w-24 lg:h-24 min-w-16 h-16 aspect-square' src={'http://localhost:5000/uploads/' + module.photos?.[0]} />
