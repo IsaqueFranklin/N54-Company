@@ -46,7 +46,7 @@ export default function PubNewsletterPage(){
             title, description, addedPhotos, content, dia:new Date(),
         }
 
-        if(user.admin){
+        if(user?.admin){
             if(id){
                 await axios.post('/criar-newsletter', {
                     id, ...newsletterPostData

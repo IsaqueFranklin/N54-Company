@@ -28,7 +28,7 @@ export default function Book({books}){
         axios.get('/get-modulos').then(response => {
             setModules([...response.data])
         })
-    }, [])
+    }, [user])
 
     async function saveModule(ev){
         ev.preventDefault();
@@ -37,10 +37,10 @@ export default function Book({books}){
             moduleTitle, moduleDescription, moduleAddedPhotos, dia:new Date(), bookId
         }
 
-        setCreateModule(false);
+        /*setCreateModule(false);
         setModuleTitle('');
         setModuleDescription('');
-        setModuleAddedPhotos([]);
+        setModuleAddedPhotos([]);*/
 
         if(user?.admin){
             if(id){

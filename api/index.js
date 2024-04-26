@@ -256,22 +256,28 @@ app.post('/criar-book', async (req, res) => {
     const {bookTitle, bookDescription, bookAddedPhotos, dia} = req.body;
 
     const {admin} = await User.findById(userData.id);
+    console.log(admin)
 
     const index = await Book.find();
+    console.log(index)
 
-    if(admin === true){
-        Book.create({
-            title:bookTitle,
-            description:bookDescription,
-            photos:bookAddedPhotos,
-            dia,
-            owner:userData.id,
-            index:index.length
-        }).then(doc => {
-            res.json(doc)
-        }).catch(err => {
-            throw err;
-        })
+    try {
+        if(admin === true){
+            Book.create({
+                title:bookTitle,
+                description:bookDescription,
+                photos:bookAddedPhotos,
+                dia,
+                owner:userData.id,
+                index:index.length
+            }).then(doc => {
+                res.json(doc)
+            }).catch(err => {
+                throw err;
+            })
+        }
+    } catch (err) {
+        console.log(err)
     }
 })
 

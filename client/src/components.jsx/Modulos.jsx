@@ -125,23 +125,23 @@ export default function Modulos({ modulos }) {
                                     <h3 className='text-sm text-gray-900'>{module.description}</h3>
                                     {/*<div className='content' dangerouslySetInnerHTML={{__html:post.content}} /> */}
                                     <button onClick={() => { setCreateContent(true), setModuleId(module._id) }} className='py-2 px-2 rounded-full bg-[#0047AB] text-white hover:bg-gray-700 hover:text-black my-4 mb-6'>
-                                        <svg class="lg:w-6 lg:h-6 w-3 h-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
+                                        <svg className="lg:w-6 lg:h-6 w-3 h-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14m-7 7V5" />
                                         </svg>
                                     </button>
                                     {seeContents && wichBook === module._id ? (
                                         <>
                                             <button onClick={() => (setSeeContents(false), setWichBook(null))} type="submit" className="mx-2 text-white bg-gray-700 hover:bg-[#0047AB] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-sm px-2 py-2 text-center">
-                                                <svg class="lg:w-6 lg:h-6 w-3 h-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7" />
+                                                <svg className="lg:w-6 lg:h-6 w-3 h-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m5 15 7-7 7 7" />
                                                 </svg>
                                             </button>
                                             <Conteudos conteudos={contents.filter(content => content.conjunto === module._id)} />
                                         </>
 
                                     ) : (<button onClick={() => (setSeeContents(true), setWichBook(module._id))} type="submit" className="mx-2 text-white bg-[#0047AB] hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-sm px-2 py-2 text-center">
-                                        <svg class="lg:w-6 lg:h-6 w-3 h-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                                        <svg className="lg:w-6 lg:h-6 w-3 h-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 9-7 7-7-7" />
                                         </svg>
                                     </button>)}
                                 </div>

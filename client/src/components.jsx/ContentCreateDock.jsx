@@ -61,7 +61,7 @@ export default function ContentCreateDock(){
 
         console.log(check)
         
-        if(user.admin){
+        if(user?.admin){
             if(id){
                 await axios.post('/criar-conteudo/', {
                     ...contentPostData
