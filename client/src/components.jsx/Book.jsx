@@ -42,7 +42,7 @@ export default function Book({books}){
         setModuleDescription('');
         setModuleAddedPhotos([]);
 
-        if(user.admin){
+        if(user?.admin){
             if(id){
                 await axios.post('/criar-modulo', {
                     id, ...modulePostData
@@ -95,24 +95,24 @@ export default function Book({books}){
                             </div> 
                             <div className=''>
                             <button onClick={() => {setCreateModule(true), setBookId(book._id)}} className='py-2 px-2 rounded-full bg-[#0047AB] text-white hover:bg-gray-700 hover:text-white'>
-                            <svg class="lg:w-6 lg:h-6 w-3 h-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+                            <svg className="lg:w-6 lg:h-6 w-3 h-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14m-7 7V5"/>
                             </svg>
                             </button>
 
                             {seeModules && wichBook === book._id ? (
                                 <>
                                     <button onClick={() => (setSeeModules(false), setWichBook(null))} type="submit" className="mx-2 text-white bg-gray-700 hover:bg-[#0047AB] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-sm px-2 py-2 text-center">
-                                        <svg class="lg:w-6 lg:h-6 w-3 h-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
+                                        <svg className="lg:w-6 lg:h-6 w-3 h-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m5 15 7-7 7 7"/>
                                         </svg>
                                     </button>
                                     <Modulos modulos={modules.filter(module => module.conjunto === book._id)} />
                                 </>
                                 
                             ) : (<button onClick={() => (setSeeModules(true), setWichBook(book._id))} type="submit" className="mx-2 text-white bg-[#0047AB] hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-sm px-2 py-2 text-center">
-                                    <svg class="lg:w-6 lg:h-6 h-3 w-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                                    <svg className="lg:w-6 lg:h-6 h-3 w-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 9-7 7-7-7"/>
                                     </svg>
                                 </button>)}
                             </div>
