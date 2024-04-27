@@ -28,7 +28,7 @@ function App() {
           
         </Route>
         <Route path='/dashboard' element={ <PublicarPage /> } />
-        <Route path='/exit' element={<Dashboard/>} />
+        {/*<Route path='/exit' element={<Dashboard/>} />*/}
         <Route path='/cadastro' element={ <RegisterPage /> } />
         <Route path='/login' element={ <LoginPage /> } />
         <Route path='/criar' element={ <PublicarPage /> } />

@@ -66,7 +66,7 @@ export default function PubNewsletterPage(){
     }
 
     if(redirect){
-        return <Navigate to={'/'} />
+        return <Navigate to={'/dashboard'} />
     }
 
     return (

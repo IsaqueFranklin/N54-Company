@@ -28,6 +28,7 @@ export default function Book({books}){
         axios.get('/get-modulos').then(response => {
             setModules([...response.data])
         })
+        console.log(modules)
     }, [user])
 
     async function saveModule(ev){
@@ -42,17 +43,23 @@ export default function Book({books}){
         setModuleDescription('');
         setModuleAddedPhotos([]);*/
 
-        if(user?.admin){
-            if(id){
-                await axios.post('/criar-modulo', {
-                    id, ...modulePostData
-                })
-                
+        try {
+            if(user?.admin){
+                if(id){
+                    await axios.post('/criar-modulo', {
+                        id, ...modulePostData
+                    })
+                    
+                } else {
+                    await axios.post('/criar-modulo', {
+                        ...modulePostData
+                    })
+                }
             } else {
-                await axios.post('/criar-modulo', {
-                    ...modulePostData
-                })
+                alert("Deu merda.")
             }
+        } catch (e) {
+            console.log(e)
         }
     }
 

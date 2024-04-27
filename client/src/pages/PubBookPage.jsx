@@ -45,18 +45,25 @@ export default function PubBookPage(){
             bookTitle, bookDescription, bookAddedPhotos, dia:new Date()
         }
 
-        if(user?.admin){
-            if(id){
-                await axios.post('/criar-book', {
-                    id, ...bookPostData
-                })
-                setRedirect(true);
+        try {
+            if(user?.admin){
+                if(id){
+                    await axios.post('/criar-book', {
+                        id, ...bookPostData
+                    })
+                    setRedirect(true);
+                } else {
+                    await axios.post('/criar-book', {
+                        ...bookPostData
+                    })
+                    setRedirect(true);
+                }
             } else {
-                await axios.post('/criar-book', {
-                    ...bookPostData
-                })
-                setRedirect(true);
+                console.log("Você não é admim.")
+                alert("Você não é admim.")
             }
+        } catch (err) {
+            console.log(err)
         }
 
     }
@@ -66,12 +73,12 @@ export default function PubBookPage(){
     }
 
     if(redirect){
-        return window.location.reaload();
+        return window.location.reload();
     }
 
     return (
         <div className='my-auto mx-auto items-center mt-12 max-w-4xl'>
-        <form onSubmit={() => saveBook}>
+        <form onSubmit={saveBook}>
             <h2 className='text-2xl mt-4 mb-4'>Título do seu book</h2>
             <input type="text" value={bookTitle} onChange={ev => setBookTitle(ev.target.value)} placeholder='Um título de cair as calças...' />
 

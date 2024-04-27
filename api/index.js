@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.use('/uploads', express.static(__dirname+'/uploads'));
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:5173'
+    origin: 'http://localhost:5173',
 }));
 
 //Multer middleware configuration for image upload
@@ -226,6 +226,7 @@ app.post('/upload', photosMiddleware.array('photos', 10), (req, res) => {
 
 app.post('/criar-newsletter', async (req, res) => {
     const userData = await getUserDataFromReq(req);
+    console.log(userData)
 
     const {title, description, addedPhotos, content, dia} = req.body;
 
@@ -252,6 +253,7 @@ app.post('/criar-newsletter', async (req, res) => {
 
 app.post('/criar-book', async (req, res) => {
     const userData =  await getUserDataFromReq(req);
+    console.log("Aqui: ",userData)
 
     const {bookTitle, bookDescription, bookAddedPhotos, dia} = req.body;
 
@@ -261,23 +263,19 @@ app.post('/criar-book', async (req, res) => {
     const index = await Book.find();
     console.log(index)
 
-    try {
-        if(admin === true){
-            Book.create({
-                title:bookTitle,
-                description:bookDescription,
-                photos:bookAddedPhotos,
-                dia,
-                owner:userData.id,
-                index:index.length
-            }).then(doc => {
-                res.json(doc)
-            }).catch(err => {
-                throw err;
-            })
-        }
-    } catch (err) {
-        console.log(err)
+    if(admin === true){
+        Book.create({
+            title:bookTitle,
+            description:bookDescription,
+            photos:bookAddedPhotos,
+            dia,
+            owner:userData.id,
+            index:index.length
+        }).then(doc => {
+            res.json(doc)
+        }).catch(err => {
+            throw err;
+        })
     }
 })
 
