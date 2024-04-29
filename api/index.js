@@ -10,6 +10,7 @@ const Book = require('./models/Book');
 const Modulo = require('./models/Modulo');
 const Conteudo = require('./models/Conteudo');
 const Carta = require('./models/Carta');
+const Blog = require('./models/Blog')
 
 const nodemailer = require('nodemailer');
 const fs = require('fs');
@@ -375,6 +376,31 @@ app.get('/get-contents', async (req, res) => {
 app.get('/content/:id', async (req, res) => {
     const {id} = req.params;
     res.json(await Conteudo.findById(id));
+})
+
+app.post("/criar-blog", async (req, res) => {
+    const userData = await getUserDataFromReq(req);
+
+    const {contentTitle, contentDescription, contentAddedPhotos, contentContent, dia, id} = req.body;
+
+    const {admin} = await User.findById(userData.id);
+
+    try {
+        if(admin){
+            Blog.create({
+                title: contentTitle,
+                description: contentDescription,
+                content: contentContent,
+                dia: dia,
+                photos: contentAddedPhotos,
+                owner: userData.id,
+            })
+        }
+
+        res.status(200);
+    } catch (err) {
+        throw err;
+    }
 })
 
 //Start the server
